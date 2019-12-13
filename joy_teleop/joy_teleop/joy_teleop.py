@@ -311,7 +311,10 @@ class JoyTeleop(Node):
         target = msg
         for i in ml[:-1]:
             target = getattr(target, i)
-        setattr(target, ml[-1], value)
+        if ml[-1].isdigit():
+            target.__setitem__(int(ml[-1]), value)
+        else:
+            setattr(target, ml[-1], value)
 
     def get_interface_type(self, type_name, ext):
         if type_name not in self.message_types:
