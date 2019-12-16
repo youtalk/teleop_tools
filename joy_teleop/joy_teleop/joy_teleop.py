@@ -312,7 +312,7 @@ class JoyTeleop(Node):
         for i in ml[:-1]:
             target = getattr(target, i)
         if ml[-1].isdigit():
-            while len(target) + 1 <= int(ml[-1]):
+            while len(target) <= int(ml[-1]) + 1:
                 target.append(0.0)
             target.__setitem__(int(ml[-1]), value)
         else:
